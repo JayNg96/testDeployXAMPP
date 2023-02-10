@@ -14,9 +14,7 @@ jobs:
     steps:
     - name: Download XAMPP
       run: |
-        sudo apt update
-        sudo apt upgrade -y
-        wget https://www.apachefriends.org/xampp-files/${XAMPP_VERSION}/xampp-linux-x64-${XAMPP_VERSION}-2-installer.run
+        wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.0/xampp-linux-x64-8.2.0-0-installer.run
         chmod +x xampp-linux-${XAMPP_VERSION}-0-installer.run
         sudo ./xampp-linux-${XAMPP_VERSION}-0-installer.run
     - name: Start XAMPP
