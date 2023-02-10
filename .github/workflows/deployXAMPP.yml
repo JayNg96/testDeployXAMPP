@@ -15,8 +15,8 @@ jobs:
     - name: Download XAMPP
       run: |
         wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/${XAMPP_VERSION}/xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
-        chmod +x xampp-linux-${XAMPP_VERSION}-0-installer.run
-        sudo ./xampp-linux-${XAMPP_VERSION}-0-installer.run
+        chmod +x xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
+        sudo ./xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
     - name: Start XAMPP
       run: |
         sudo /opt/lampp/lampp start
