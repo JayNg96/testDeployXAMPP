@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  XAMPP_VERSION: latest
+  XAMPP_VERSION: 8.1.1
 
 jobs:
   deploy:
@@ -14,7 +14,9 @@ jobs:
     steps:
     - name: Download XAMPP
       run: |
-        wget https://downloadsapachefriends.global.ssl.fastly.net/xampp-files/${XAMPP_VERSION}/xampp-linux-${XAMPP_VERSION}-0-installer.run
+        sudo apt update
+        sudo apt upgrade -y
+        wget https://www.apachefriends.org/xampp-files/${XAMPP_VERSION}/xampp-linux-x64-${XAMPP_VERSION}-2-installer.run
         chmod +x xampp-linux-${XAMPP_VERSION}-0-installer.run
         sudo ./xampp-linux-${XAMPP_VERSION}-0-installer.run
     - name: Start XAMPP
