@@ -1,0 +1,24 @@
+name: Deploy XAMPP
+
+on:
+  push:
+    branches:
+      - "*"
+
+env:
+  XAMPP_VERSION: 7.4.12
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download XAMPP
+      run: |
+        wget https://downloadsapachefriends.global.ssl.fastly.net/xampp-files/${XAMPP_VERSION}/xampp-linux-${XAMPP_VERSION}-0-installer.run
+        chmod +x xampp-linux-${XAMPP_VERSION}-0-installer.run
+        sudo ./xampp-linux-${XAMPP_VERSION}-0-installer.run
+    - name: Start XAMPP
+      run: |
+        sudo /opt/lampp/lampp start
+        sudo /opt/lampp/lampp startapache
+        sudo /opt/lampp/lampp startmysql
