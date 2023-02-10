@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  XAMPP_VERSION: 7.4.12
+  XAMPP_VERSION: latest
 
 jobs:
   deploy:
