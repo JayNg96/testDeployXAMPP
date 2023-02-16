@@ -44,8 +44,11 @@ jobs:
         from app import db
         db.create_all()
         exit()
-        EOF      
-    - name: Perform Unit Testings
+        EOF    
+        
+    - name: Perform Unit and Integration Testings
       run: |
         pytest tests/unit-tests/test_*.py -v -cov --junitxml=dev_report.xml
-        pytest --cov=tests/unit-tests/test_*.py --cov-report=xml:dev_coverage.xml
+        pytest tests/integration-tests/test_*.py -v -cov --junitxml=dev_report.xml
+        pytest --cov=tests --cov-report=xml:dev_coverage.xml
+        
