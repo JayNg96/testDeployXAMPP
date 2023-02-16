@@ -20,7 +20,7 @@ studentdata_file_path = os.path.join(parentdir, studentdata_filename)
 companydata_file_path = os.path.join(parentdir, companydata_filename)
 
 # in upload data page, upload a student csv file
-def test_upload_Data():
+def test_upload_student_data():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument('--no-sandbox')
@@ -29,7 +29,21 @@ def test_upload_Data():
     chrome_driver.get('http://127.0.0.1:5221/upload_data')
 
     chrome_driver.find_element(By.NAME, "internship_student_data").send_keys(studentdata_file_path)
-    time.sleep(3)
+    time.sleep(1)
+
+    chrome_driver.find_element(By.XPATH, "/html/body/div/form/input[3]").click()
+
+
+def test_upload_company_data():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument("--window-size=1920x1080")
+    chrome_driver = webdriver.Chrome(service=ChromeService(executable_path=ChromeDriverManager().install()),
+                                     options=chrome_options)
+    chrome_driver.get('http://127.0.0.1:5221/upload_data')
 
     chrome_driver.find_element(By.NAME, "internship_company_data").send_keys(companydata_file_path)
-    time.sleep(3)
+    time.sleep(1)
+
+    chrome_driver.find_element(By.XPATH, "/html/body/div/form/input[3]").click()

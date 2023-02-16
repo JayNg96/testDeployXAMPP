@@ -30,7 +30,7 @@ jobs:
         
     - name: Install Libraries
       run: |
-        pip install flake8 pytest pytest-cov pandas Flask Flask-MySQLdb Flask-SQLAlchemy PyMySQL SQLAlchemy mysql-connector-python selenium webdriver-manager
+        pip install flake8 pytest pytest-cov pandas Flask Flask-MySQLdb Flask-SQLAlchemy PyMySQL SQLAlchemy mysql-connector-python selenium webdriver-manager openpyxl
         
     - name: Checkout Repo
       uses: actions/checkout@v3
@@ -45,8 +45,11 @@ jobs:
         db.create_all()
         exit()
         EOF    
+
+    - name: Run the app
+      run: |
         python app.py
-        
+ 
     - name: Perform Unit and Integration Testings
       run: |
         pytest tests/unit-tests/test_*.py -v -cov --junitxml=dev_report.xml

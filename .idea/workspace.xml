@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="863782ad-ac93-4e94-9d01-bc402c715224" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deployXAMPP.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deployXAMPP.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/integration-tests/test_matchStudent.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration-tests/test_matchStudent.py" afterDir="false" />
     </list>
