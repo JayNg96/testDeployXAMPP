@@ -12,10 +12,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: Cache XAMPP installer
+      uses: actions/cache@v2
+      with:
+        path: xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
+        key: xampp-${XAMPP_VERSION}
+        restore-keys: xampp-
+
     - name: Download XAMPP
+      if: steps.cache-xampp.outcome != 'success'
       run: |
         wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/${XAMPP_VERSION}/xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
         chmod +x xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
+
+    - name: Install XAMPP
+      run: |
         sudo ./xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
         
     - name: Start XAMPP
