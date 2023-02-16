@@ -17,8 +17,35 @@ jobs:
         wget https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/${XAMPP_VERSION}/xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
         chmod +x xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
         sudo ./xampp-linux-x64-${XAMPP_VERSION}-0-installer.run
+        
     - name: Start XAMPP
       run: |
         sudo /opt/lampp/lampp start
         sudo /opt/lampp/lampp startapache
         sudo /opt/lampp/lampp startmysql
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+        
+    - name: Install Libraries
+      run: |
+        pip install flake8 pytest pytest-cov pandas Flask Flask-MySQLdb Flask-SQLAlchemy PyMySQL SQLAlchemy mysql-connector-python
+        
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+      with:
+        repository: JayNg96/testDeployXAMPP 
+
+    - name: Create a database for testing
+      run: |
+        python create_db.py
+        flask shell <<EOF
+        from app import db
+        db.create_all()
+        exit()
+        EOF      
+    - name: Perform Unit Testings
+      run: |
+        pytest tests/unit-tests/test_*.py -v -cov --junitxml=dev_report.xml
+        pytest --cov=tests/unit-tests/test_*.py --cov-report=xml:dev_coverage.xml
