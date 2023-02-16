@@ -48,7 +48,7 @@ jobs:
  
     - name: Perform Unit and Integration Testings
       run: |
-        python app.py
+        python app.py &
         pytest tests/unit-tests/test_*.py -v -cov --junitxml=dev_report.xml
         pytest tests/integration-tests/test_*.py -v -cov --junitxml=dev_report.xml
         pytest --cov=tests --cov-report=xml:dev_coverage.xml
