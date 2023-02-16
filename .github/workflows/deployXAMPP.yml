@@ -45,6 +45,7 @@ jobs:
         db.create_all()
         exit()
         EOF    
+        python app.py
         
     - name: Perform Unit and Integration Testings
       run: |
